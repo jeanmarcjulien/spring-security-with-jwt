@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +15,8 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         return new User("admin", "password",
-                new ArrayList<>());
+                new ArrayList<>(){{
+                    add(new SimpleGrantedAuthority("admin"));
+                }});
     }
 }
