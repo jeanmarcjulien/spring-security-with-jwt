@@ -44,9 +44,17 @@ class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/hello1").permitAll()
                 //.antMatchers("/sensitiveController/**").hasRole("admin")
                 .antMatchers("/secret", "/secret/").hasAuthority("admin")
+                .antMatchers("/getUser", "/getUser/").hasAuthority("user")
                 .anyRequest().authenticated().and().
                 exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS).maximumSessions(1);
+
+        /*
+            hasAuthority(?)
+            hasAnyAuthority()
+            authenticated()
+            permitAll()
+         */
 
         // how authentication is performed via jwt tokens AFTER authentication (token dispense)
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

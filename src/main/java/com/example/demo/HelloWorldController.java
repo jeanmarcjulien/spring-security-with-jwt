@@ -131,7 +131,10 @@ class HelloWorldController {
 
         //this.httpSecurity.logout().deleteCookies("auth_code", "JSESSIONID").invalidateHttpSession(true).clearAuthentication(true);
 
+        // SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         // SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+        // securityContextLogoutHandler.logout(request, response, null);
+
 
         ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).eraseCredentials();
 
